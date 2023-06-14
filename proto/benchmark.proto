@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+option go_package = "./;pb";
+
+enum Career {
+  CAREER_UNSPECIFIED  = 0;
+  CAREER_WARRIOR      = 1;
+  CAREER_PALADIN      = 2;
+  CAREER_HUNTER       = 3;
+  CAREER_ROGUE        = 4;
+  CAREER_PRIEST       = 5;
+  CAREER_SHAMAN       = 6;
+  CAREER_MAGE         = 7;
+  CAREER_WARLOCK      = 8;
+  CAREER_MONK         = 9;
+  CAREER_DRUID        = 10;
+  CAREER_DEMON_HUNTER = 11;
+  CAREER_DEATH_KNIGHT = 12;
+}
+
+enum Classes {
+  CLASSES_UNSPECIFIED = 0;
+  CLASSES_HUMAN       = 1;
+  CLASSES_DWARF       = 2;
+  CLASSES_NIGHT_ELF   = 3;
+  CLASSES_GNOME       = 4;
+  CLASSES_DRAENEI     = 5;
+  CLASSES_WORGEN      = 6;
+  CLASSES_PANDAREN    = 7;
+  CLASSES_DRACTHYR    = 8;
+  CLASSES_ORC         = 9;
+  CLASSES_UNDEAD      = 10;
+  CLASSES_TAUREN      = 11;
+  CLASSES_TROLL       = 12;
+  CLASSES_BLOOD_ELF   = 13;
+  CLASSES_GOBLIN      = 14;
+}
+
+message Friend {
+  int64 uid                 = 1;
+  string name               = 2;
+  Career career             = 3;
+  Classes race              = 4;
+  bytes comment             = 5;
+}
+
+message User {
+  int64 uid                 = 1;
+  string name               = 2;
+  int32 age                 = 3;
+  int32 height              = 4;
+  float weight              = 5;
+  bytes comment             = 6;
+  Career career             = 7;
+  Classes race              = 8;
+  repeated Friend friends   = 9;
+  map <string, int32> props = 10;
+}
