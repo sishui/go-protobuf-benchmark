@@ -2,6 +2,12 @@
 @echo off
 call build.bat
 
+
+::==============================googleprotobuf==============================::
+cd googleprotobuf
+go test -bench . -benchmem
+cd ..
+
 ::==============================fastpb==============================::
 cd fastpb
 go test -bench . -benchmem
@@ -22,11 +28,4 @@ cd ..
 cd gogoprotobuf
 go test -bench . -benchmem
 cd ..
-
-
-::==============================googleprotobuf==============================::
-cd googleprotobuf
-go test -bench . -benchmem
-cd ..
-
 

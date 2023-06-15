@@ -2,6 +2,14 @@
 
 del /s /q *.pb.*go
 
+::==============================googleprotobuf==============================::
+where protoc-gen-go >nul
+if %errorlevel% equ 1 (
+    go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+)
+protoc --go_out=googleprotobuf proto/*.proto
+
+
 ::==============================fastpb==============================::
 where protoc-gen-fastpb >nul
 if %errorlevel% equ 1 (
@@ -24,7 +32,12 @@ if %errorlevel% equ 1 (
     go install github.com/planetscale/vtprotobuf/cmd/protoc-gen-go-vtproto@latest
 )
 set VTPROTO_EXE=%GOPATH%\bin\protoc-gen-go-vtproto.exe
-protoc --go_out=vtprotobuf --go-vtproto_out=vtprotobuf --plugin protoc-gen-go-vtproto="%VTPROTO_EXE%" proto/*.proto
+protoc -I=. -I=%GOPATH%/src/ ^
+    --go_out=vtprotobuf --go-vtproto_out=vtprotobuf ^
+    --plugin protoc-gen-go-vtproto="%VTPROTO_EXE%" ^
+    --go-vtproto_opt=pool=y.x ^
+    --go-vtproto_opt=features=pool+marshal+unmarshal+size+clone ^
+    proto/*.proto
 
 
 ::==============================gogoprotobuf==============================::
@@ -34,11 +47,3 @@ if %errorlevel% equ 1 (
 )
 set VTPROTO_EXE=%GOPATH%\bin\protoc-gen-go-vtproto.exe
 protoc --gofast_out=gogoprotobuf proto/*.proto
-
-
-::==============================googleprotobuf==============================::
-where protoc-gen-go >nul
-if %errorlevel% equ 1 (
-    go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-)
-protoc --go_out=googleprotobuf proto/*.proto
