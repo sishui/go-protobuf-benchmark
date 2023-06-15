@@ -68,12 +68,6 @@ func BenchmarkSmallerUnmarshal(b *testing.B) {
 	}
 }
 
-func BenchmarkSmallerClone(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		_ = proto.Clone(jerry)
-	}
-}
-
 func BenchmarkLargerMarshal(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		_, err := tom.Marshal()
@@ -95,6 +89,12 @@ func BenchmarkLargerUnmarshal(b *testing.B) {
 		if err != nil {
 			b.Fatal(err)
 		}
+	}
+}
+
+func BenchmarkSmallerClone(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = proto.Clone(jerry)
 	}
 }
 
