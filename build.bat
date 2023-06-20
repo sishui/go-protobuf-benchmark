@@ -45,5 +45,4 @@ where protoc-gen-gofast >nul
 if %errorlevel% equ 1 (
     go install github.com/gogo/protobuf/protoc-gen-gofast@latest
 )
-set VTPROTO_EXE=%GOPATH%\bin\protoc-gen-go-vtproto.exe
 protoc --gofast_out=gogoprotobuf proto/*.proto
