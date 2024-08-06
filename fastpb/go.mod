@@ -1,8 +1,8 @@
 module fastpb
 
-go 1.17
+go 1.18
 
 require (
 	github.com/cloudwego/fastpb v0.0.4 // indirect
-	google.golang.org/protobuf v1.30.0 // indirect
+	google.golang.org/protobuf v1.34.2 // indirect
 )
