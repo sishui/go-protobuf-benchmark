@@ -1,12 +1,10 @@
 module csproto
 
-go 1.21
-
-toolchain go1.22.4
+go 1.22
 
 require (
-	github.com/CrowdStrike/csproto v0.30.1
-	google.golang.org/protobuf v1.34.2
+	github.com/CrowdStrike/csproto v0.35.0
+	google.golang.org/protobuf v1.36.5
 )
 
 require (

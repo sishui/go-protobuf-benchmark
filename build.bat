@@ -32,8 +32,7 @@ if %errorlevel% equ 1 (
     go install github.com/planetscale/vtprotobuf/cmd/protoc-gen-go-vtproto@latest
 )
 set VTPROTO_EXE=%GOPATH%\bin\protoc-gen-go-vtproto.exe
-protoc -I=. -I=%GOPATH%/src/ ^
-    --go_out=vtprotobuf --go-vtproto_out=vtprotobuf ^
+protoc --go_out=vtprotobuf --go-vtproto_out=vtprotobuf ^
     --plugin protoc-gen-go-vtproto="%VTPROTO_EXE%" ^
     --go-vtproto_opt=pool=y.x ^
     --go-vtproto_opt=features=pool+marshal+unmarshal+size+clone ^
